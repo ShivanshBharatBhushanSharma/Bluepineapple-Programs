@@ -1,0 +1,8 @@
+01 DCN
+02 Java
+06 OSSE
+08 TCS
+03 PHP
+05 Math
+09 maths
+05 Math
