@@ -1,0 +1,36 @@
+<html>
+    <body>
+        <script>
+        function wordFrequency(word){
+            let count = 0;
+            let matchWordIterable = text.matchAll(word);
+            for(word of matchWordIterable){
+                count++;
+            }
+            return count;
+            // return Array.from(matchWordIterable).length  
+        }
+
+        var text = "Diwali is often called the 'Festival of Lights', and is celebrated by lighting lamps, \
+        and bursting crackers and fireworks. It is a festival which commemorates the victorious return of \
+        Lord Rama to Ayodhya after saving his wife Sita from the demon king Ravana.";
+    
+        let actualWord = [ 'is', 'festival', 'a', 'Diwali', 'and'];
+        let actualOutput = [ 4, 1, 21, 1, 3];
+        let predictedOutput = [];
+        let pos = 0;
+
+        actualWord.forEach(word => {
+            predictedOutput[pos++] = wordFrequency(word);
+        })
+
+        for(let i = 0; i < actualWord.length; i++){
+            if(actualOutput[i] === predictedOutput[i]){
+                alert(`Test case for '${actualWord[i]}' is passed with predict count ${predictedOutput[i]}.`);
+            } else {
+                alert(`Test case for '${actualWord[i]}' is failed with predict count ${predictedOutput[i]}.`);
+            }
+        }
+        </script>
+    </body>
+</html>

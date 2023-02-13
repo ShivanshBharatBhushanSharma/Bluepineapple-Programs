@@ -1,0 +1,263 @@
+<html>
+    <body>
+        <script>
+
+class Node {
+	constructor(id, book_name, author_name) {
+        this.id = id;
+		this.book_name = book_name;
+        this.author_name = author_name;
+		this.next = null
+	}
+}
+
+class Book {
+    static ID = 1;
+    
+    constructor() {
+		this.head = null;
+		this.size = 0;
+    }
+
+	insert_Book() {
+        let id = Book.ID++;
+
+        let book_name = prompt("Enter Book Name = ","Programming in C")
+        let author_name = prompt("Enter Author Name = ","Dennis Ritchi")
+        
+        var node = new Node(id, book_name, author_name);
+
+		var current;
+
+		if (this.head == null)
+			this.head = node;
+		else {
+			current = this.head;
+
+			while (current.next) {
+				current = current.next;
+			}
+
+			current.next = node;
+		}
+		this.size++;
+	}
+    
+    issue_Book(student) {
+
+        let id = +prompt("Enter Book Id to Issue Book= ",1);
+        let studentName = prompt("Enter Student Name to Issue Book = ",'Shivansh');
+
+        var current = this.head;
+        var prev = null;
+
+        while (current != null) {
+            if (current.id === id) {
+                if (prev == null) {
+                    this.head = current.next;
+                } else {
+                    prev.next = current.next;
+                }
+                this.size--;
+
+                var studentNode = new StudentNode(id, current.book_name, current.author_name, studentName);
+                    
+                    var currentstudent;
+
+                    if (student.head == null)
+                        student.head = studentNode;
+                    else {
+                        currentstudent = student.head;
+
+                        while (currentstudent.next) {
+                            currentstudent = current.next;
+                        }
+
+                        currentstudent.next = studentNode;
+                    }
+                student.size++;
+                
+                return alert("Book Issued for Id = "+current.id);
+            }
+            prev = current;
+            current = current.next;
+        }
+        alert("No such Book Id for Issued.");
+    }
+
+	no_of_books() {
+		alert("Number of Books = "+this.size);
+	}
+
+	display_Book() {
+		var curr = this.head;
+		var str = "";
+		while (curr) {
+			str += curr.id + " | " + curr.book_name + " | " + curr.author_name + " \n";
+			curr = curr.next;
+		}
+		if(str) {
+            alert("List of Books\nBook Id | Book Name | Author Name\n"+str);
+        }
+        else {
+            alert("List of Books\nNo Books");
+        }    
+	}
+
+    
+    search_by_AuthorName() {
+        
+        var authorName = prompt("Enter Author Name to search Books = ", "Dennis Ritchi");
+        var curr = this.head;
+		var str = "";
+		
+        while (curr) {
+			if(curr.author_name === authorName)
+			str += curr.id + " | " + curr.book_name + " | " + curr.author_name + " \n";
+			curr = curr.next;
+		}
+		if(str) {
+            alert("List of Books\nBook Id | Book Name | Author Name\n"+str);
+        }
+        else {
+            alert("List of Books\nNo Books");
+        }
+    }
+
+    search_by_BookName() {
+        
+        var bookName = prompt("Enter Book Name to search = ", "Programming in C");
+        var curr = this.head;
+		var str = "";
+
+		while (curr) {
+            if(curr.book_name === bookName)
+			str += curr.id + " | " + curr.book_name + " | " + curr.author_name + " \n";
+			curr = curr.next;
+		}
+		if(str) {
+            alert("List of Books\nBook Id | Book Name | Author Name\n"+str);
+        }
+        else {
+            alert("List of Books\nNo Books");
+        }
+    }
+
+}
+
+class StudentNode {
+	constructor(id, book_name, author_name, studentName) {
+        this.id = id;
+		this.book_name = book_name;
+        this.author_name = author_name;
+        this.studentName =studentName;
+		this.next = null
+	}
+}
+
+class Student{
+
+    static ID = 1;
+
+    constructor(){
+        this.head = null;
+		this.size = 0;
+    }
+
+    display_IssuedBook() {
+        var curr = this.head;
+		var str = "";
+		while (curr) {
+			str += curr.id + " | " + curr.book_name + " | " + curr.author_name + " \n";
+			curr = curr.next;
+		}
+		if(str) {
+            alert("List of Books\nBook Id | Book Name | Author Name\n"+str);
+        }
+        else {
+            alert("List of Books\nNo Books");
+        }
+    }
+
+    return_Book(book){
+
+        var id = +prompt("Enter Book Id to return Book = ",1);
+        var current = this.head;
+        var prev = null;
+
+        while (current != null) {
+            if (current.id === id) {
+                if (prev == null) {
+                    this.head = current.next;
+                } else {
+                    prev.next = current.next;
+                }
+                this.size--;
+                
+                var node = new Node(id, current.book_name, current.author_name);
+                    
+                    var currentbook;
+
+                    if (book.head == null)
+                        book.head = node;
+                    else {
+                        currentbook = book.head;
+
+                        while (currentbook.next) {
+                            currentbook = currentbook.next;
+                        }
+
+                        currentbook.next = node;
+                    }
+                book.size++;
+                
+                return alert("Book Return for Id = "+current.id);
+            }
+            prev = current;
+            current = current.next;
+        }
+        alert("No such Book Id for Return.");
+    }
+
+    no_of_IssuedBooks() {
+		alert("Number of Books = "+this.size);
+	}
+}
+
+var book = new Book();
+var student = new Student();
+                    
+label:while(1)
+{
+	var option = +prompt("\n***MENU***\n1.Display Book \n2.Display Issued Book \n3.Insert Book \n4.Issue Book \n"+
+	"5.Return Book \n6.Search By Author Name \n7.Search By Book Name\n8.No. of Books Remaining\n9.No. of Issued Books\n10.Exit \n\nChoose Menu = ");
+
+    switch(option)
+	{
+        case 1:book.display_Book();
+                break;
+        case 2:student.display_IssuedBook();
+                break;
+        case 3:book.insert_Book();
+                break;	 
+        case 4:book.issue_Book(student);
+                break;
+        case 5:student.return_Book(book);
+                break;                        
+        case 6:book.search_by_AuthorName();
+                break;                        
+        case 7:book.search_by_BookName();
+                break;
+        case 8:book.no_of_books();
+                break;
+        case 9:student.no_of_IssuedBooks();
+                break;
+        case 10: break label;
+                break;
+        default: alert("\nPlease enter vaild input.\n");	 		
+	}
+}
+        </script>
+    </body>
+</html>
+

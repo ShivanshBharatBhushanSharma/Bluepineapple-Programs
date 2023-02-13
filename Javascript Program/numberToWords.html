@@ -1,0 +1,211 @@
+<html>
+    <body>
+        <script>
+            function numberToWords(number){
+                let singleDigit = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 
+                                    'Six', 'Seven','Eight', 'Nine'];
+                let doubleDigit = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 
+                                    'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 
+                                    'Nineteen']
+                let tens = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy',
+                            'Eighty', 'Ninety']; 
+
+                let numWords = '';
+                let remainder = 0;
+                let quotient = 0;
+                let countNumber = number.toString().length;
+
+                if(countNumber === 1)
+                {
+                    numWords = singleDigit[number];
+                
+                }
+                else if(countNumber === 2)
+                {
+                    quotient = Math.trunc(number / 10);
+                    remainder = Math.trunc(number % 10);
+                    
+                    if(quotient == 1)
+                    {   
+                        numWords = doubleDigit[remainder];
+                    }
+                    else {
+                        numWords = tens[quotient - 2];
+                        if(remainder !== 0)
+                        {
+                            numWords = numWords + " " + singleDigit[remainder];
+                        }
+                        
+                    }
+                }
+                else if(countNumber === 3)
+                {
+                    quotient = Math.trunc(number / 100);
+                    remainder = Math.trunc(number % 10);
+                    
+                    numWords = singleDigit[quotient] + ' Hundred';
+                    
+                    number = Math.trunc(number / 10);
+                    quotient = number % 10;
+
+                    if(quotient === 0)
+                    {   
+                        if(remainder === 0)
+                        {
+                            return numWords;
+                        }
+                        else
+                        {
+                            numWords = numWords + " " + singleDigit[remainder];
+                        }    
+                    }
+                    else if (quotient === 1)
+                    {
+                        numWords = numWords + " " + doubleDigit[remainder];
+                    }
+                    else 
+                    {
+                        numWords = numWords + " " + tens[quotient - 2];
+                        if(remainder !== 0)
+                        {
+                            numWords = numWords + " " + singleDigit[remainder];
+                        }
+                    }
+                }
+                else if(countNumber === 4)
+                {
+                    quotient = Math.trunc(number / 1000);
+                    remainder = Math.trunc(number % 10);
+                    
+                    numWords = singleDigit[quotient] + ' Thousand';
+                    quotient = number % 1000;
+                    number = number % 1000;
+
+                    quotient = Math.trunc(number / 100);
+                    if(quotient !== 0)
+                    {
+                        numWords = numWords + ' ' + singleDigit[quotient] + ' Hundred';
+                    }
+
+                    number = Math.trunc(number / 10);
+                    quotient = number % 10;
+
+                    if(quotient === 0)
+                    {   
+                        if(remainder === 0)
+                        {
+                            return numWords;
+                        }
+                        else
+                        {
+                            numWords = numWords + " " + singleDigit[remainder];
+                        }    
+                    }
+                    else if (quotient === 1)
+                    {
+                        numWords = numWords + " " + doubleDigit[remainder];
+                    }
+                    else 
+                    {
+                        numWords = numWords + " " + tens[quotient - 2];
+                        if(remainder !== 0)
+                        {
+                            numWords = numWords + " " + singleDigit[remainder];
+                        }
+                    }
+                }
+                else if(countNumber === 5)
+                {
+                    quotient = Math.trunc(number / 10000);
+                    remainder = Math.trunc(number % 10);
+                    
+                    if (quotient === 1)
+                    {   
+                        number = number % 10000;
+                        quotient = Math.trunc(number / 1000); 
+                        numWords = doubleDigit[quotient] + ' ' + 'Thousand';
+                    }
+                    else 
+                    {
+                        numWords = tens[quotient - 2];
+                        
+                        number = number % 10000;
+                        quotient = Math.trunc(number / 1000);
+
+                        if(quotient !== 0)
+                        {
+                            numWords = numWords + ' ' + singleDigit[quotient] + ' Thousand';
+                        }
+                        else
+                        {
+                            numWords = numWords + ' ' + 'Thousand';
+                        }
+                    }
+
+                    
+                    quotient = number % 1000;
+                    number = number % 1000;
+
+                    quotient = Math.trunc(number / 100);
+                    if(quotient !== 0)
+                    {
+                        numWords = numWords + ' ' + singleDigit[quotient] + ' Hundred';
+                    }
+
+                    number = Math.trunc(number / 10);
+                    quotient = number % 10;
+
+                    if(quotient === 0)
+                    {   
+                        if(remainder === 0)
+                        {
+                            return numWords;
+                        }
+                        else
+                        {
+                            numWords = numWords + " " + singleDigit[remainder];
+                        }    
+                    }
+                    else if (quotient === 1)
+                    {
+                        numWords = numWords + " " + doubleDigit[remainder];
+                    }
+                    else 
+                    {
+                        numWords = numWords + " " + tens[quotient - 2];
+                        if(remainder !== 0)
+                        {
+                            numWords = numWords + " " + singleDigit[remainder];
+                        }
+                    }
+                }
+
+                return numWords;
+            }
+
+            let actualNumber = [ 0, 12, 25, 120, 135, 999, 1001, 1100, 1111, 5680, 9900, 10000, 11001, 20100, 23500];
+            
+            let actualOutput = [
+            'Zero', 'Twelve', 'Twenty Five', 'One Hundred Twenty', 'One Hundred Thirty Five', 
+            'Nine Hundred Ninety Nine', 'One Thousand One', 'One Thousand One Hundred', 
+            'One Thousand One Hundred Eleven', 'Five Thousand Six Hundred Eighty', 
+            'Nine Thousand Nine Hundred', 'Ten Thousand', 'Eleven Thousand One', 
+            'Twenty Thousand One Hundred', 'Twenty Three Thousand Five Hundred'];
+            
+            let predictedOutput = [];
+            let size = 0;
+
+            actualNumber.forEach(function (number){
+                predictedOutput[size++] = numberToWords(number);
+            });
+            
+            for(let i = 0; i < actualNumber.length; i++){
+                if(actualOutput[i] === predictedOutput[i]){
+                    console.log(`Test case for ${actualNumber[i]} is passed with predict word - ${predictedOutput[i]}.`);
+                } else {
+                    console.log(`Test case for ${actualNumber[i]} is failed with predict word - ${predictedOutput[i]}.`);
+                }
+            }
+        </script>
+    </body>
+</html>
