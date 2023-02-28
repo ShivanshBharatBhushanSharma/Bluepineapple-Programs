@@ -100,44 +100,14 @@
             }
         }
 
-      /* function testPreOrder(n,num[],int expectedOutcome[])
-        {
-            struct Node * root=NULL;
-            int count=0,i;
-            for(i=0;i<n;i++)
-            {
-                root = insertNode(root,num[i]);
-            }
-            preorder(root);
-            for(i=0;i<n;i++)
-            {
-                if(arr[i]==expectedOutcome[i])
-                {
-                    count++;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            if(count==n)
-            {
-                alert("\nsuccessful for insert\n");
-            }
-            else
-            {
-                alert("\nunsuccessful for insert\n");
-            }
-        }*/
-
         var tree = new AVLTree();
 
-        tree.root = tree.insert(tree.root, 10);
-        tree.root = tree.insert(tree.root, 20);
-        tree.root = tree.insert(tree.root, 30);
-        tree.root = tree.insert(tree.root, 40);
-        tree.root = tree.insert(tree.root, 50);
-        tree.root = tree.insert(tree.root, 25);
+        tree.root = tree.insert(tree.root, 11);
+        tree.root = tree.insert(tree.root, 22);
+        tree.root = tree.insert(tree.root, 33);
+        tree.root = tree.insert(tree.root, 44);
+        tree.root = tree.insert(tree.root, 55);
+        tree.root = tree.insert(tree.root, 65);
 
         document.write(
         "Preorder traversal of the " + "constructed AVL tree is "

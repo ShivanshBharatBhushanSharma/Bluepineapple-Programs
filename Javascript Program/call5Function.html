@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <script>
+            function fun1() { 
+                alert("function 1 call");
+            }
+            function fun2() {
+                alert("function 2 call");
+            }
+            function fun3() {
+                alert("function 3 call");
+            }
+            var fun4 = () => {
+                alert("function 4 call");
+            }
+            var fun5 =function () {
+                alert("function 5 call");
+            }
+            
+            let getName = prompt("Enter function name");
+            window[getName]()
+            </script>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Stack Program</title>
+</head>
+
+<body>
+  <script>
+    function push() {
+      
+      if(stacktop + 1 < MAX) {
+        let element = +prompt("Enter element to push in element");
+        array.push(element);
+        stacktop = stacktop + 1;   
+      }
+      else{
+        isFull();
+      }
+    }
+    function pop() {
+
+      if(stacktop == -1) {
+        isEmpty();
+      }
+      else{
+        alert(array.pop());
+        stacktop = stacktop - 1;
+      }
+    }
+    function isFull() {
+      if(stacktop + 1 == MAX) {
+        alert("Stack is Full");  
+      } else {
+        alert("Stack is not Full");
+      }
+    }
+    function isEmpty() {
+      if(stacktop == -1) {
+        alert("Stack is Empty");
+      } else {
+        alert("Stack is not Empty");
+      }
+    }
+
+
+    var MAX = +prompt("Enter Stack size");
+    var array = [];
+
+    var stacktop = -1;
+
+    label: while (1) {
+
+      var option = +prompt("***Menu***\n1.push\n2.pop\n3.isEmpty\n4.isFull" +
+        "\n5.top\n6.Exit\nenter ur choice=");
+      switch (option) {
+        case 1: push();
+          break;
+        case 2: pop();
+          break;
+        case 3: isEmpty();
+          break;
+        case 4: isFull();
+          break;
+        case 5: alert(stacktop);
+          break;
+        case 6: break label;
+      }
+    }
+  </script>
+
+</body>
+
+</html>
